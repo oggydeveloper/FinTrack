@@ -1,15 +1,18 @@
 ﻿using FinTrack.Models;
+using FinTrack.Repository;
 
 namespace FinTrack.Controllers;
 public class CarteiraController
 {
     private readonly Carteira _carteira;
     private readonly Usuario _usuario;
+    private readonly CarteiraRepository _carteiraRepository;
 
     public CarteiraController(Carteira carteira, Usuario usuario)
     {
         _carteira = carteira;
         _usuario = usuario;
+
     }
 
     public void AdicionarReceita(string descricao, decimal valor)
@@ -38,6 +41,19 @@ public class CarteiraController
         _carteira.Saldo = _carteira.CalcularSaldo();
     }
 
+    public void RemoverTransacoes(Transacao t)
+    {
+        if (_carteira.Transacoes.Contains(t))
+        {
+            _carteira.RemoverTransacao(t);
+            _carteira.Saldo = _carteira.CalcularSaldo();
+        }
+        else
+        {
+            Console.WriteLine("Transação não encontrada na carteira.");
+        }
+    }
+
     public void ListarTransacoes()
     {
         _carteira.ExibirTransacoes();
@@ -57,9 +73,17 @@ public class CarteiraController
     {
         _usuario.DefinirMetaMensal(meta);
     }
-
     public void VerificarMeta()
     {
         _usuario.VerificarMeta();
+    }
+
+    public void SalvarCarteira()
+    {
+        _carteiraRepository.SalvarCarteira(_carteira);
+    }
+    public void CarregarCarteira()
+    {
+        _carteiraRepository.CarregarCarteira(_carteira);
     }
 }

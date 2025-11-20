@@ -8,5 +8,6 @@ public class Categoria
     public void ExibirCategoria()
     {
         Console.WriteLine($"Categoria: {Nome}\nTipo: {Tipo}");
+        
     }
 }

@@ -18,13 +18,19 @@ public class Carteira
         Transacoes.Add(transacao);
     }
 
+    public void RemoverTransacao(Transacao transacao)
+    {
+        Transacoes.Remove(transacao);
+    }
+
     public void ExibirTransacoes()
     {
         foreach (var transacao in Transacoes)
         {
             Console.WriteLine("--------------------");
-            Console.WriteLine($"Descrição: {transacao.Descricao}" +
+            Console.WriteLine($"Descrição: {transacao.Descricao}\n" +
                 $"Data criação: {transacao.Data}");
+            
         }
     }
 

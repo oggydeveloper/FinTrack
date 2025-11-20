@@ -1,7 +1,7 @@
 ﻿namespace FinTrack.Models;
-
 public class Usuario
 {
+    public Guid id { get; init; }
     public string Nome { get; set; }
     public Carteira Carteira { get; set; }
     public double MetaMensal { get; set; }
@@ -19,7 +19,6 @@ public class Usuario
         Console.WriteLine($"Nome: {Carteira.Nome}");
         Console.WriteLine($"Saldo: {Carteira.Saldo:C}");
     }
-
     public void VerificarMeta()
     {
         if (Carteira.Saldo >= (decimal)MetaMensal)
